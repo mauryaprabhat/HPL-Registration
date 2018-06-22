@@ -1,0 +1,228 @@
+﻿@model HPL.Models.PlayerDetail
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+   
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
+
+    <style>
+    @*@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+    @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);*@
+
+    body{
+	    margin: 0;
+	    padding: 0;
+	    background: #fff;
+
+	    color: #fff;
+	    font-family: Arial;
+	    font-size: 24px;
+    }
+
+        .body {
+            position: absolute;
+            top: 0px;
+            left: -40px;
+            right: -40px;
+            bottom: -100px;
+            width: auto;
+            height: auto;
+            background-image: url('../../HPLTeams.jpg');
+            background-size: cover;
+            
+            z-index: 0;
+        }
+
+    .grad{
+	    position: absolute;
+	    top: -20px;
+	    left: -40px;
+	    right: -40px;
+	    bottom: -100px;
+	    width: auto;
+	    height: auto;
+	    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	    z-index: 1;
+	    opacity: 0.7;
+    }
+
+     .header{
+	    position: absolute;
+	    top: 0% ;
+	    left: 40%;
+	    z-index: 2;
+    }
+    /*.header{
+	    position: absolute;
+	    top: calc(50% - 35px);
+	    left: calc(50% - 255px);
+	    z-index: 2;
+    }*/
+
+    .header div{
+	    float: left;
+	    color: black;
+	    font-family: 'Exo', sans-serif;
+	    font-size: 35px;
+	    font-weight: 200;
+    }
+
+    .header div span{
+	    color: #5379fa !important;
+    }
+
+    .login{
+	    position: absolute;
+	    top: 12%;
+	    left: 40%;
+	    height: 500px;
+	    width: 950px;
+	    padding: 10px;
+	    z-index: 2;
+    }
+
+    .login input[type=text]{
+	    width: 250px;
+	    height: 30px;
+	    background: transparent;
+	    border: 1px solid rgba(255,255,255,0.6);
+	    border-radius: 2px;
+	    color: #fff;
+	    font-family: 'Exo', sans-serif;
+	    font-size: 16px;
+	    font-weight: 400;
+	    padding: 4px;
+    }
+
+    .login input[type=button]{
+	    width: 260px;
+	    height: 35px;
+	    background: #fff;
+	    border: 1px solid #fff;
+	    cursor: pointer;
+	    border-radius: 2px;
+	    color: #a18d6c;
+	    font-family: 'Exo', sans-serif;
+	    font-size: 16px;
+	    font-weight: 400;
+	    padding: 6px;
+	    margin-top: 10px;
+    }
+
+     .login input[type=submit]{
+	    width: 260px;
+	    height: 35px;
+	    background: #fff;
+	    border: 1px solid #fff;
+	    cursor: pointer;
+	    border-radius: 2px;
+	    color: #a18d6c;
+	    font-family: 'Exo', sans-serif;
+	    font-size: 18px;
+	    font-weight: 600;
+        padding: 6px;
+	    margin-top: 10px;
+    }
+        
+    </style>
+    <script src="js/prefixfree.min.js"></script>
+    <title>Registration</title>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Registration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="body"></div>
+        <div class="grad"></div>
+        <div class="header">
+            <h1>HPL - 4 Registration</h1>
+            <hr />
+        </div>
+        <br>
+        <div class="login">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <table align="center" width="100%" height="100%">
+                <tr>
+                    <td>
+                        <b> @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" }) : </b>
+                    </td>
+                    <td align="left">
+                        @Html.EditorFor(model => model.EmployeeId, new { htmlAttributes = new { @class = "form-control", maxlength = 6 } })
+                    </td>
+                    <td align="left" width="40%">
+                        @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" }) : </b>
+                    </td>
+                    <td align="left">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td align="left">
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" }) : </b>
+                    </td>
+                    <td align="left">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td align="left">
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" }) : </b>
+                    </td>
+                    <td align="left">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td align="left">
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> @Html.LabelFor(model => model.Achievement, htmlAttributes: new { @class = "control-label col-md-2" }) : </b>
+                    </td>
+                    <td align="left">
+                        @Html.EditorFor(model => model.Achievement, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td align="left">
+                        @Html.ValidationMessageFor(model => model.Achievement, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left">
+                        <b> @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" }) : </b> &nbsp; &nbsp;
+                        <input type="file" name="UploadedImage" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left">
+                        <input type="submit" width="100px" height="30px" value="Register" class="btn btn-default" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    }
+</body>
+</html>
